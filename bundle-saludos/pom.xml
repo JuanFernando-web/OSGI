@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ec.udla.osgi</groupId>
+        <artifactId>osgi-karaf-demo</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>bundle-saludos</artifactId>
+    <packaging>bundle</packaging>
+    <name>Bundle 1 - Servicio de Saludos (proveedor)</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>ec.udla.osgi.saludos</Bundle-SymbolicName>
+                        <Bundle-Name>Servicio de Saludos</Bundle-Name>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <Bundle-Activator>ec.udla.osgi.saludos.impl.Activator</Bundle-Activator>
+                        <!-- Solo la interfaz es publica; la implementacion queda privada -->
+                        <Export-Package>ec.udla.osgi.saludos.api;version=1.0.0</Export-Package>
+                        <Private-Package>ec.udla.osgi.saludos.impl</Private-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
